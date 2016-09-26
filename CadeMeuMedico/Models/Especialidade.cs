@@ -12,16 +12,16 @@ namespace CadeMeuMedico.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cidades
+    public partial class Especialidade
     {
-        public Cidades()
+        public Especialidade()
         {
-            this.Medicos = new HashSet<Medicos>();
+            this.Medico = new HashSet<Medico>();
         }
     
-        public int IDCidade { get; set; }
+        public int IDEspecialidade { get; set; }
         public string Nome { get; set; }
     
-        public virtual ICollection<Medicos> Medicos { get; set; }
+        public virtual ICollection<Medico> Medico { get; set; }
     }
 }

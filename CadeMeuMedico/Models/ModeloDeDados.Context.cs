@@ -13,10 +13,10 @@ namespace CadeMeuMedico.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntidadesCadeMeuMedicoBD : DbContext
+    public partial class EntidadesCadeMeuMedicoBD2 : DbContext
     {
-        public EntidadesCadeMeuMedicoBD()
-            : base("name=EntidadesCadeMeuMedicoBD")
+        public EntidadesCadeMeuMedicoBD2()
+            : base("name=EntidadesCadeMeuMedicoBD2")
         {
         }
     
@@ -25,9 +25,9 @@ namespace CadeMeuMedico.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Cidades> Cidades { get; set; }
-        public DbSet<Especialidades> Especialidades { get; set; }
-        public DbSet<Medicos> Medicos { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Cidade> Cidade { get; set; }
+        public DbSet<Especialidade> Especialidade { get; set; }
+        public DbSet<Medico> Medico { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }

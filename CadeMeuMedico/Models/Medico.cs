@@ -12,7 +12,7 @@ namespace CadeMeuMedico.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Medicos
+    public partial class Medico
     {
         public long IDMedico { get; set; }
         public string CRM { get; set; }
@@ -26,7 +26,7 @@ namespace CadeMeuMedico.Models
         public int IDCidade { get; set; }
         public int IDEspecialidade { get; set; }
     
-        public virtual Cidades Cidades { get; set; }
-        public virtual Especialidades Especialidades { get; set; }
+        public virtual Cidade Cidade { get; set; }
+        public virtual Especialidade Especialidade { get; set; }
     }
 }

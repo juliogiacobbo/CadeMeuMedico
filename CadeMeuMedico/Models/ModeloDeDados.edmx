@@ -5,21 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CadeMeuMedicoBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Cidades">
+        <EntityType Name="Cidade">
           <Key>
             <PropertyRef Name="IDCidade" />
           </Key>
           <Property Name="IDCidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="Especialidades">
+        <EntityType Name="Especialidade">
           <Key>
             <PropertyRef Name="IDEspecialidade" />
           </Key>
           <Property Name="IDEspecialidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
-        <EntityType Name="Medicos">
+        <EntityType Name="Medico">
           <Key>
             <PropertyRef Name="IDMedico" />
           </Key>
@@ -35,7 +35,7 @@
           <Property Name="IDCidade" Type="int" Nullable="false" />
           <Property Name="IDEspecialidade" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Usuarios">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IDUsuario" />
           </Key>
@@ -46,41 +46,41 @@
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="fk_medicos_cidades">
-          <End Role="Cidades" Type="Self.Cidades" Multiplicity="1" />
-          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <End Role="Cidade" Type="Self.Cidade" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Cidades">
+            <Principal Role="Cidade">
               <PropertyRef Name="IDCidade" />
             </Principal>
-            <Dependent Role="Medicos">
+            <Dependent Role="Medico">
               <PropertyRef Name="IDCidade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_medicos_especialidades">
-          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
-          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <End Role="Especialidade" Type="Self.Especialidade" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Especialidades">
+            <Principal Role="Especialidade">
               <PropertyRef Name="IDEspecialidade" />
             </Principal>
-            <Dependent Role="Medicos">
+            <Dependent Role="Medico">
               <PropertyRef Name="IDEspecialidade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CadeMeuMedicoBDModelStoreContainer">
-          <EntitySet Name="Cidades" EntityType="Self.Cidades" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Especialidades" EntityType="Self.Especialidades" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cidade" EntityType="Self.Cidade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidade" EntityType="Self.Especialidade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_medicos_cidades" Association="Self.fk_medicos_cidades">
-            <End Role="Cidades" EntitySet="Cidades" />
-            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Cidade" EntitySet="Cidade" />
+            <End Role="Medico" EntitySet="Medico" />
           </AssociationSet>
           <AssociationSet Name="fk_medicos_especialidades" Association="Self.fk_medicos_especialidades">
-            <End Role="Especialidades" EntitySet="Especialidades" />
-            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Especialidade" EntitySet="Especialidade" />
+            <End Role="Medico" EntitySet="Medico" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -88,23 +88,23 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CadeMeuMedicoBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cidades">
+        <EntityType Name="Cidade">
           <Key>
             <PropertyRef Name="IDCidade" />
           </Key>
           <Property Name="IDCidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Medicos" Relationship="Self.fk_medicos_cidades" FromRole="Cidades" ToRole="Medicos" />
+          <NavigationProperty Name="Medico" Relationship="Self.fk_medicos_cidades" FromRole="Cidade" ToRole="Medico" />
         </EntityType>
-        <EntityType Name="Especialidades">
+        <EntityType Name="Especialidade">
           <Key>
             <PropertyRef Name="IDEspecialidade" />
           </Key>
           <Property Name="IDEspecialidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Medicos" Relationship="Self.fk_medicos_especialidades" FromRole="Especialidades" ToRole="Medicos" />
+          <NavigationProperty Name="Medico" Relationship="Self.fk_medicos_especialidades" FromRole="Especialidade" ToRole="Medico" />
         </EntityType>
-        <EntityType Name="Medicos">
+        <EntityType Name="Medico">
           <Key>
             <PropertyRef Name="IDMedico" />
           </Key>
@@ -119,10 +119,10 @@
           <Property Name="WebsiteBlog" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="IDCidade" Type="Int32" Nullable="false" />
           <Property Name="IDEspecialidade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cidades" Relationship="Self.fk_medicos_cidades" FromRole="Medicos" ToRole="Cidades" />
-          <NavigationProperty Name="Especialidades" Relationship="Self.fk_medicos_especialidades" FromRole="Medicos" ToRole="Especialidades" />
+          <NavigationProperty Name="Cidade" Relationship="Self.fk_medicos_cidades" FromRole="Medico" ToRole="Cidade" />
+          <NavigationProperty Name="Especialidade" Relationship="Self.fk_medicos_especialidades" FromRole="Medico" ToRole="Especialidade" />
         </EntityType>
-        <EntityType Name="Usuarios">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IDUsuario" />
           </Key>
@@ -133,41 +133,41 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="fk_medicos_cidades">
-          <End Role="Cidades" Type="Self.Cidades" Multiplicity="1" />
-          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <End Role="Cidade" Type="Self.Cidade" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Cidades">
+            <Principal Role="Cidade">
               <PropertyRef Name="IDCidade" />
             </Principal>
-            <Dependent Role="Medicos">
+            <Dependent Role="Medico">
               <PropertyRef Name="IDCidade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_medicos_especialidades">
-          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
-          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <End Role="Especialidade" Type="Self.Especialidade" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Especialidades">
+            <Principal Role="Especialidade">
               <PropertyRef Name="IDEspecialidade" />
             </Principal>
-            <Dependent Role="Medicos">
+            <Dependent Role="Medico">
               <PropertyRef Name="IDEspecialidade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EntidadesCadeMeuMedicoBD" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cidades" EntityType="Self.Cidades" />
-          <EntitySet Name="Especialidades" EntityType="Self.Especialidades" />
-          <EntitySet Name="Medicos" EntityType="Self.Medicos" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+        <EntityContainer Name="EntidadesCadeMeuMedicoBD2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cidade" EntityType="Self.Cidade" />
+          <EntitySet Name="Especialidade" EntityType="Self.Especialidade" />
+          <EntitySet Name="Medico" EntityType="Self.Medico" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="fk_medicos_cidades" Association="Self.fk_medicos_cidades">
-            <End Role="Cidades" EntitySet="Cidades" />
-            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Cidade" EntitySet="Cidade" />
+            <End Role="Medico" EntitySet="Medico" />
           </AssociationSet>
           <AssociationSet Name="fk_medicos_especialidades" Association="Self.fk_medicos_especialidades">
-            <End Role="Especialidades" EntitySet="Especialidades" />
-            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Especialidade" EntitySet="Especialidade" />
+            <End Role="Medico" EntitySet="Medico" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -175,26 +175,26 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CadeMeuMedicoBDModelStoreContainer" CdmEntityContainer="EntidadesCadeMeuMedicoBD">
-          <EntitySetMapping Name="Cidades">
-            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Cidades">
-              <MappingFragment StoreEntitySet="Cidades">
+        <EntityContainerMapping StorageEntityContainer="CadeMeuMedicoBDModelStoreContainer" CdmEntityContainer="EntidadesCadeMeuMedicoBD2">
+          <EntitySetMapping Name="Cidade">
+            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Cidade">
+              <MappingFragment StoreEntitySet="Cidade">
                 <ScalarProperty Name="IDCidade" ColumnName="IDCidade" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Especialidades">
-            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Especialidades">
-              <MappingFragment StoreEntitySet="Especialidades">
+          <EntitySetMapping Name="Especialidade">
+            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Especialidade">
+              <MappingFragment StoreEntitySet="Especialidade">
                 <ScalarProperty Name="IDEspecialidade" ColumnName="IDEspecialidade" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Medicos">
-            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Medicos">
-              <MappingFragment StoreEntitySet="Medicos">
+          <EntitySetMapping Name="Medico">
+            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Medico">
+              <MappingFragment StoreEntitySet="Medico">
                 <ScalarProperty Name="IDMedico" ColumnName="IDMedico" />
                 <ScalarProperty Name="CRM" ColumnName="CRM" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
@@ -209,9 +209,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="CadeMeuMedicoBDModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
