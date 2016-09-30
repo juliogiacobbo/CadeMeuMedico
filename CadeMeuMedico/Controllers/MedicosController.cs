@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using CadeMeuMedico.Models;
 
@@ -17,6 +12,30 @@ namespace CadeMeuMedico.Controllers
         {
             var medicos = db.Medico.Include(m => m.Cidade).Include(m => m.Especialidade);
             return View(medicos);
+        }
+
+        public ActionResult Adicionar()
+        {
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade", "Nome");
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,
+            "IDEspecialidade",
+            "Nome");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Adicionar(Medico medico)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Medico.Add(medico);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade","Nome",medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,"IDEspecialidade","Nome",medico.IDEspecialidade);
+            return View(medico);
         }
     }
 }
