@@ -17,8 +17,9 @@
             @Html.LabelFor(model => model.IDMedico)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.IDMedico)
-            @Html.ValidationMessageFor(model => model.IDMedico)
+            @*@Html.EditorFor(model => model.IDMedico)
+            @Html.ValidationMessageFor(model => model.IDMedico)*@
+            @Html.HiddenFor(model => model.IDMedico)
         </div>
 
         <div class="editor-label">
@@ -110,7 +111,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Web.Mvc;
 using CadeMeuMedico.Models;
+using System.Data;
 
 namespace CadeMeuMedico.Controllers
 {
@@ -33,8 +34,40 @@ namespace CadeMeuMedico.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade","Nome",medico.IDCidade);
-            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,"IDEspecialidade","Nome",medico.IDEspecialidade);
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade", "Nome", medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade, "IDEspecialidade", "Nome", medico.IDEspecialidade);
+            return View(medico);
+        }
+
+        public ActionResult Editar(long id)
+        {
+            Medico medico = db.Medico.Find(id);
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade",
+            "Nome",
+            medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,
+            "IDEspecialidade",
+            "Nome",
+            medico.IDEspecialidade);
+            return View(medico);
+        }
+        [HttpPost]
+        public ActionResult Editar(Medico medico)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(medico).State = EntityState.Modified;
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade",
+            "Nome",
+            medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,
+            "IDEspecialidade",
+            "Nome",
+            medico.IDEspecialidade);
             return View(medico);
         }
     }
