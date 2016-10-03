@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using CadeMeuMedico.Models;
 using System.Data;
+using System;
 
 namespace CadeMeuMedico.Controllers
 {
@@ -42,13 +43,8 @@ namespace CadeMeuMedico.Controllers
         public ActionResult Editar(long id)
         {
             Medico medico = db.Medico.Find(id);
-            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade",
-            "Nome",
-            medico.IDCidade);
-            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,
-            "IDEspecialidade",
-            "Nome",
-            medico.IDEspecialidade);
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade", "Nome", medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade, "IDEspecialidade", "Nome", medico.IDEspecialidade);
             return View(medico);
         }
         [HttpPost]
@@ -61,14 +57,25 @@ namespace CadeMeuMedico.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade",
-            "Nome",
-            medico.IDCidade);
-            ViewBag.IDEspecialidade = new SelectList(db.Especialidade,
-            "IDEspecialidade",
-            "Nome",
-            medico.IDEspecialidade);
+            ViewBag.IDCidade = new SelectList(db.Cidade, "IDCidade", "Nome", medico.IDCidade);
+            ViewBag.IDEspecialidade = new SelectList(db.Especialidade, "IDEspecialidade", "Nome", medico.IDEspecialidade);
             return View(medico);
+        }
+
+        [HttpPost]
+        public string Excluir(long id)
+        {
+            try
+            {
+                Medico medico = db.Medico.Find(id);
+                db.Medico.Remove(medico);
+                db.SaveChanges();
+                return Boolean.TrueString;
+            }
+            catch
+            {
+                return Boolean.FalseString;
+            }
         }
     }
 }
