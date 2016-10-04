@@ -15,6 +15,10 @@ namespace CadeMeuMedico.Controllers
         {
             return View();
         }
-
+        public ActionResult Login()
+        {
+            ViewBag.Title = "Seja bem vindo(a)";
+            return View();
+        }
     }
 }

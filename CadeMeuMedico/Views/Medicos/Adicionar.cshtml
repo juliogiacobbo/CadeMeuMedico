@@ -4,7 +4,7 @@
     ViewBag.Title = "Adicionar";
 }
 
-<h2>Adicionar</h2>
+<h2>Adicionar Médico</h2>
 
 @using (Html.BeginForm())
 {
@@ -12,8 +12,6 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Medico</legend>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.CRM)
         </div>
@@ -53,21 +51,15 @@
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AtendePorConvenio)
-        </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.AtendePorConvenio)
             @Html.ValidationMessageFor(model => model.AtendePorConvenio)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TemClinica)
+            @Html.LabelFor(model => model.AtendePorConvenio)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.TemClinica)
             @Html.ValidationMessageFor(model => model.TemClinica)
+            @Html.LabelFor(model => model.TemClinica)
         </div>
 
         <div class="editor-label">
@@ -79,20 +71,17 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.IDCidade)
-           
+            @Html.LabelFor(model => model.Cidade)
         </div>
         <div class="editor-field">
-            @*@Html.EditorFor(model => model.IDCidade)*@
             @Html.DropDownList("IDCidade", String.Empty)
             @Html.ValidationMessageFor(model => model.IDCidade)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.IDEspecialidade)
+            @Html.LabelFor(model => model.Especialidade)
         </div>
         <div class="editor-field">
-            @*@Html.EditorFor(model => model.IDEspecialidade)*@
             @Html.DropDownList("IDEspecialidade", String.Empty)
             @Html.ValidationMessageFor(model => model.IDEspecialidade)
         </div>
