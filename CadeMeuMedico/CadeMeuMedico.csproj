@@ -128,11 +128,13 @@
     <Compile Include="Controllers\CidadesController.cs" />
     <Compile Include="Controllers\EntidadesCadeMeuMedicoBD.cs" />
     <Compile Include="Controllers\EspecialidadesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicosController.cs" />
-    <Compile Include="Controllers\MensagensController.cs" />
-    <Compile Include="Controllers\TesteLayoutController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BannersPublicitarios.cs">
+      <DependentUpon>ModeloDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cidade.cs">
       <DependentUpon>ModeloDeDados.tt</DependentUpon>
@@ -175,6 +177,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Img\banner-cdc-cademeumedico.png" />
+    <Content Include="Content\Img\logo-conio-cademeumedico.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\ModeloDeDados.edmx">
@@ -221,7 +225,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\TesteLayout\Index.cshtml" />
     <Content Include="Views\Medicos\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
@@ -234,6 +237,7 @@
     <Content Include="Views\Especialidades\Index.cshtml" />
     <Content Include="Views\Especialidades\Adicionar.cshtml" />
     <Content Include="Views\Especialidades\Editar.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

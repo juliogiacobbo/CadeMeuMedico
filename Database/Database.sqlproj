@@ -59,9 +59,10 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="BannersPublicitarios.sql" />
+    <Build Include="Tables.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Insert.sql" />
+    <None Include="Database.sql" />
   </ItemGroup>
 </Project>

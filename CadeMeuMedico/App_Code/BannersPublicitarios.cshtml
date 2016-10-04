@@ -1,17 +1,19 @@
-﻿@{
-    Layout = null;
-}
+﻿@using CadeMeuMedico.Models;
 
-<!DOCTYPE html>
+@helper RetornaDoisBannersMaisRecentes()
+{
+var bd = new CadeMeuMedico.Models.EntidadesCadeMeuMedicoBD2();
+var banners = bd.BannersPublicitarios.OrderByDescending(b => b.IDBanner).Take(2);
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+    <div style="width:100%; text-align:left; border:1px solid #efefef; padding:10px; display:inline-block;">
+        @foreach (var b in banners)
+        {
+            <div style="width:125px; height:125px; float:left; margin-right:10px;">
+                <a href="@b.LinkBanner">
+                    <img src="~/Content/Img/@b.BannerCampanha" title="@b.TituloCampanha" />
+                </a>
+            </div>
+        }
     </div>
-</body>
-</html>
+
+}
