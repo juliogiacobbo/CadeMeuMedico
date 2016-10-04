@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="App_Code\BannersPublicitarios.cshtml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Models\ModeloDeDados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
