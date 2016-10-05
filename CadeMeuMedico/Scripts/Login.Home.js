@@ -18,9 +18,8 @@
                 if (dados.OK) {
                     $("#status").html(dados.Mensagem)
                     setTimeout(function () {
-                        window.location.href =
-                        "/Home/Index"
-                    }, 5000);
+                        window.location.href = "/Home/Index"
+                    }, 2000);
                     $("#status").show();
                 }
                 else {
