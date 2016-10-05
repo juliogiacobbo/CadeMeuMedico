@@ -1,6 +1,6 @@
-﻿using CadeMeuMedico.Repositorios;
-using System;
+﻿using System;
 using System.Web.Mvc;
+using CadeMeuMedico.Repositorios;
 
 namespace CadeMeuMedico.Filtros
 {
@@ -16,7 +16,8 @@ namespace CadeMeuMedico.Filtros
             {
                 if (RepositorioUsuarios.VerificaSeOUsuarioEstaLogado() == null)
                 {
-                    FiltroDeContexto.RequestContext.HttpContext.Response.Redirect("/Home/Login?Url=" + FiltroDeContexto.HttpContext.Request.Url.LocalPath);
+                    FiltroDeContexto.RequestContext.HttpContext.Response.Redirect("/Home/Login?Url=" +
+                    FiltroDeContexto.HttpContext.Request.Url.LocalPath);
                 }
             }
         }
