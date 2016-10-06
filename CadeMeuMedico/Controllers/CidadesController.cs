@@ -17,6 +17,7 @@ namespace CadeMeuMedico.Controllers
             var cidades = db.Cidade.ToList();
             return View(cidades);
         }
+
         public ActionResult Adicionar()
         {
             return View();
@@ -70,23 +71,20 @@ namespace CadeMeuMedico.Controllers
         }
 
         [HttpPost]
-        public string Delete(long id)
+        public ActionResult Delete(long id)
         {
             try
             {
                 Cidade cidade = db.Cidade.Find(id);
                 db.Cidade.Remove(cidade);
                 db.SaveChanges();
-                return Boolean.TrueString;
+                return RedirectToAction("Index");
             }
             catch
             {
-                return Boolean.FalseString;
+                return View();
             }
         }
-
-
-
-
+        
     }
 }
