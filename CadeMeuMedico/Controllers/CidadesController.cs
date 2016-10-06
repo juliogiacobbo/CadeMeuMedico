@@ -1,9 +1,8 @@
-﻿using System.Data.Entity;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CadeMeuMedico.Models;
 using System.Data;
-using System;
 using System.Linq;
+using System.Net;
 
 namespace CadeMeuMedico.Controllers
 {
@@ -16,6 +15,7 @@ namespace CadeMeuMedico.Controllers
             var cidades = db.Cidade.ToList();
             return View(cidades);
         }
+
         public ActionResult Adicionar()
         {
             return View();
@@ -51,20 +51,38 @@ namespace CadeMeuMedico.Controllers
             }
             return View(cidade);
         }
+
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
+            }
+            Cidade cidade = db.Cidade.Where(p => p.IDCidade ==
+            id).First();
+            if (cidade == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cidade);
+        }
+
         [HttpPost]
-        public string Excluir(long id)
+        public ActionResult Delete(long id)
         {
             try
             {
                 Cidade cidade = db.Cidade.Find(id);
                 db.Cidade.Remove(cidade);
                 db.SaveChanges();
-                return Boolean.TrueString;
+                return RedirectToAction("Index");
             }
             catch
             {
-                return Boolean.FalseString;
+                return View();
             }
         }
+        
     }
 }
