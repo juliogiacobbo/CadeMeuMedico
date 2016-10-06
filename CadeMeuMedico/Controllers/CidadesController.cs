@@ -16,6 +16,8 @@ namespace CadeMeuMedico.Controllers
             return View(cidades);
         }
 
+        //Inserção
+
         public ActionResult Adicionar()
         {
             return View();
@@ -32,6 +34,8 @@ namespace CadeMeuMedico.Controllers
 
             return View(cidade);
         }
+
+        //Edição
 
         public ActionResult Editar(long id)
         {
@@ -51,6 +55,8 @@ namespace CadeMeuMedico.Controllers
             }
             return View(cidade);
         }
+
+        //Exclusão
 
         public ActionResult Delete(long? id)
         {
