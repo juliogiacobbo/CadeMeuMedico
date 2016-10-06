@@ -3,6 +3,8 @@ using System.Web.Mvc;
 using CadeMeuMedico.Models;
 using System.Data;
 using System;
+using System.Net;
+using System.Linq;
 
 namespace CadeMeuMedico.Controllers
 {
@@ -15,6 +17,8 @@ namespace CadeMeuMedico.Controllers
             var medicos = db.Medico.Include(m => m.Cidade).Include(m => m.Especialidade);
             return View(medicos);
         }
+
+        //Inserção
 
         public ActionResult Adicionar()
         {
@@ -40,6 +44,8 @@ namespace CadeMeuMedico.Controllers
             return View(medico);
         }
 
+        //Edição
+
         public ActionResult Editar(long id)
         {
             Medico medico = db.Medico.Find(id);
@@ -62,19 +68,36 @@ namespace CadeMeuMedico.Controllers
             return View(medico);
         }
 
+        //Exclusão
+
+        public ActionResult Excluir(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
+            }
+            Medico medico = db.Medico.Where(p => p.IDMedico == id).First();
+            if (medico == null)
+            {
+                return HttpNotFound();
+            }
+            return View(medico);
+        }
+
         [HttpPost]
-        public string Excluir(long id)
+        public ActionResult Excluir(long id)
         {
             try
             {
                 Medico medico = db.Medico.Find(id);
                 db.Medico.Remove(medico);
                 db.SaveChanges();
-                return Boolean.TrueString;
+                return RedirectToAction("Index");
             }
             catch
             {
-                return Boolean.FalseString;
+                return View();
             }
         }
     }
