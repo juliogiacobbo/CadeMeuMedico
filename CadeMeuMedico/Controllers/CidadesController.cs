@@ -1,8 +1,6 @@
-﻿using System.Data.Entity;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CadeMeuMedico.Models;
 using System.Data;
-using System;
 using System.Linq;
 using System.Net;
 
