@@ -4,6 +4,7 @@ using CadeMeuMedico.Models;
 using System.Data;
 using System;
 using System.Linq;
+using System.Net;
 
 namespace CadeMeuMedico.Controllers
 {
@@ -51,8 +52,25 @@ namespace CadeMeuMedico.Controllers
             }
             return View(cidade);
         }
+
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
+            }
+            Cidade cidade = db.Cidade.Where(p => p.IDCidade ==
+            id).First();
+            if (cidade == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cidade);
+        }
+
         [HttpPost]
-        public string Excluir(long id)
+        public string Delete(long id)
         {
             try
             {
@@ -66,5 +84,9 @@ namespace CadeMeuMedico.Controllers
                 return Boolean.FalseString;
             }
         }
+
+
+
+
     }
 }
